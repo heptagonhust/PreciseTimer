@@ -139,7 +139,9 @@ namespace toth
 
     double microseconds()
     {
-      return milliseconds() * 1000.0;
+      struct timeval elapsed;
+      timersub(&t_interval.stop, &t_interval.start, &elapsed);
+      return (elapsed.tv_sec + elapsed.tv_usec);
     }
   private:
     TimeInterval t_interval;
